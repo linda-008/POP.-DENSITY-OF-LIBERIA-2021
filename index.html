@@ -18,7 +18,7 @@
             margin: 0;
         }
         </style>
-        <title>POPULATION DENSITY OF LIBERIA 2021</title>
+        <title>POPULATION DENSITY OF LIBERIA</title>
     </head>
     <body>
         <div id="map">
@@ -34,8 +34,6 @@
         <script src="js/labels.js"></script>
         <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
         <script src="js/leaflet-measure.js"></script>
-        <script src="js/proj4.js"></script>
-        <script src="js/proj4leaflet.js"></script>
         <script src="data/LBR_Population2021_1.js"></script>
         <script>
         var highlightLayer;
@@ -54,15 +52,9 @@
             }
             highlightLayer.openPopup();
         }
-        var crs = new L.Proj.CRS('EPSG:32629', '+proj=utm +zone=29 +datum=WGS84 +units=m +no_defs', {
-            resolutions: [2800, 1400, 700, 350, 175, 84, 42, 21, 11.2, 5.6, 2.8, 1.4, 0.7, 0.35, 0.14, 0.07],
-        });
         var map = L.map('map', {
-            crs: crs,
-            continuousWorld: false,
-            worldCopyJump: false, 
-            zoomControl:true, maxZoom:24, minZoom:1
-        }).fitBounds([[4.250602538242524,-12.400837965541788],[8.91464707703464,-6.212606716934792]]);
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[4.116250983190948,-12.41798556961365],[8.528820596499319,-6.098852859234304]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -88,7 +80,7 @@
             opacity: 1.0,
             attribution: '',
             minZoom: 1,
-            maxZoom: 24,
+            maxZoom: 28,
             minNativeZoom: 0,
             maxNativeZoom: 19
         });
@@ -112,29 +104,27 @@
             });
             var popupContent = '<table>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['ID_1'] !== null ? autolinker.link(feature.properties['ID_1'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">ID</th>\
+                        <td>' + (feature.properties['ID_1'] !== null ? autolinker.link(feature.properties['ID_1'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">NAME_1</th>\
+                        <th scope="row">COUNTY</th>\
                         <td>' + (feature.properties['NAME_1'] !== null ? autolinker.link(feature.properties['NAME_1'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Population'] !== null ? autolinker.link(feature.properties['Population'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">POPULATION</th>\
+                        <td>' + (feature.properties['Population'] !== null ? autolinker.link(feature.properties['Population'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Pop_Area(k'] !== null ? autolinker.link(feature.properties['Pop_Area(k'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">AREA</th>\
+                        <td>' + (feature.properties['Pop_Area(k'] !== null ? autolinker.link(feature.properties['Pop_Area(k'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['No of Dist'] !== null ? autolinker.link(feature.properties['No of Dist'].toLocaleString()) : '') + '</td>\
+                        <th scope="row">DISTRICT</th>\
+                        <td>' + (feature.properties['No of Dist'] !== null ? autolinker.link(feature.properties['No of Dist'].toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Date Creat'] !== null ? autolinker.link(feature.properties['Date Creat'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Area'] !== null ? autolinker.link(feature.properties['Area'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Pop_Density</th>\
+                        <th scope="row">Density</th>\
                         <td>' + (feature.properties['Pop_Densit'] !== null ? autolinker.link(feature.properties['Pop_Densit'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
@@ -153,7 +143,7 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(48,18,59,1.0)',
+                fillColor: 'rgba(241,238,246,1.0)',
                 interactive: true,
             }
             }
@@ -168,7 +158,7 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(62,156,254,1.0)',
+                fillColor: 'rgba(220,192,222,1.0)',
                 interactive: true,
             }
             }
@@ -183,7 +173,7 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(72,248,130,1.0)',
+                fillColor: 'rgba(220,133,192,1.0)',
                 interactive: true,
             }
             }
@@ -198,7 +188,7 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(226,220,56,1.0)',
+                fillColor: 'rgba(222,72,153,1.0)',
                 interactive: true,
             }
             }
@@ -213,7 +203,7 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(239,89,17,1.0)',
+                fillColor: 'rgba(207,22,109,1.0)',
                 interactive: true,
             }
             }
@@ -228,7 +218,7 @@
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(122,4,3,1.0)',
+                fillColor: 'rgba(152,0,67,1.0)',
                 interactive: true,
             }
             }
@@ -254,7 +244,7 @@
                 return this._div;
             };
             title.update = function () {
-                this._div.innerHTML = '<h2>POPULATION DENSITY OF LIBERIA 2021</h2>';
+                this._div.innerHTML = '<h2>POPULATION DENSITY OF LIBERIA</h2>';
             };
             title.addTo(map);
         var osmGeocoder = new L.Control.Geocoder({
